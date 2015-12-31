@@ -1,0 +1,87 @@
+此文件简要记录了使用msysgit（git-pash）的经历: 
+
+
+
+[2015.12.31]
+------------------------
+GitHub 使用教程图文详解
+http://www.linuxidc.com/Linux/2014-09/106230.htm
+
+
+[2015.12.23]
+------------------------
+git config命令使用第一篇——介绍，基本操作，增删改查
+http://blog.csdn.net/hutaoer06051/article/details/8275069
+
+
+[2015.12.22]
+------------------------
+## 1./ 目录
+每次启动时，提示内容如下:
+/********************************************************************
+Welcome to Portable Git (version 1.9.5-preview20150319)
+
+
+Run 'git help git' to display the help index.
+Run 'git help <command>' to display help for specific commands.
+
+M100@HP-PC /
+$
+********************************************************************/
+其中, "M100@HP-PC /" 语法为: <系统当前用户>@<计算机名> <当前目录>
+
+
+不禁要问，这个"/" 具体是位于系统的文件系统中的什么目录呢？
+
+在Windows下，经过测试，发现 "/" 目录其实是git-bash.bat所在路径；
+这个小测试非常简单，启动git-bash后，输入命令 mkdir test，回车;
+然后，在git-bash.bat所在路径下会多出刚才通过命令创建的test文件夹;
+
+## 2.显示\更改 当前目录
+pwd 命令 用于显示当前目录;
+cd  命令 用于更改当前目录;
+
+示例: 将当前目录更改为D盘根目录
+/********************************************************************
+Welcome to Portable Git (version 1.9.5-preview20150319)
+
+
+Run 'git help git' to display the help index.
+Run 'git help <command>' to display help for specific commands.
+
+M100@HP-PC /
+$ pwd
+/
+
+M100@HP-PC /
+$ cd D:
+
+M100@HP-PC /d
+$ pwd
+/d
+
+M100@HP-PC /d
+$
+********************************************************************/
+
+## 3.配置git
+因为Git是分布式版本控制系统，所以，每个机器都必须自报家门：你的名字和Email地址。
+$ git config --global user.name "Your Name"
+$ git config --global user.email "email@example.com"
+
+执行完命令后，会在系统当前登录的用户目录下生成一个.gitconfig文件，例如：C:\Users\M100\.gitconfig
+/**
+[user]
+	name = mean
+	email = weis1203@126.com
+*/
+根据配置文件中生成的内容，可发现 user.name "Your Name"的语法是: <section>.<key> <value>
+
+
+## 4.从远程库克隆
+使用git clone 命令, 示例：
+git clone https://github.com/LMAX-Exchange/disruptor.git git_org
+
+你也许还注意到，GitHub给出的地址不止一个，还可以用https://github.com/michaelliao/gitskills.git这样的地址。
+实际上，Git支持多种协议，默认的git://使用ssh，但也可以使用https等其他协议。
+使用https除了速度慢以外，还有个最大的麻烦是每次推送都必须输入口令，但是在某些只开放http端口的公司内部就无法使用ssh协议而只能用https。
