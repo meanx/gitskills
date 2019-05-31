@@ -1301,42 +1301,72 @@ git fetch 不会更改本地分支，因此更不会更改本地工作目录，�
 
 ## 参考文献
 
+
+### 官方文献
+
 - [git-scm Documentation](https://git-scm.com/doc)
-- [Pro Git 2 (Git 权威指南 中文 第 2 版)](https://git-scm.com/book/zh/v2)
-- [Pro-Git 1 (Git 权威指南 中文 第 1 版)](https://git-scm.com/book/zh/v1)
+
 - [Git Community Book 中文版](http://gitbook.liuhui998.com/4_2.html)
-- .
+
+- [Pro Git 2 (Git 权威指南 中文 第 2 版)](https://git-scm.com/book/zh/v2)
+
+- [Pro-Git 1 (Git 权威指南 中文 第 1 版)](https://git-scm.com/book/zh/v1)
+
+### 入门文献
+
 - [史上最浅显易懂的Git教程！—— 廖雪峰](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
+
 - [图解 Git（强烈推荐）链接1](http://my.oschina.net/xdev/blog/114383?fromerr=2KHTeiJb)、[链接2](http://marklodato.github.io/visual-git-guide/index-zh-cn.html)
-- [Git命令家底儿及Git数据通信原理详解](http://geek.csdn.net/news/detail/72807)
-- [常用 Git 命令清单 —— 阮一峰](http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
-- [Git 使用流程规范. —— 阮一峰](http://www.ruanyifeng.com/blog/2015/08/git-use-process.html)
-- [Git 远程操作详解. —— 阮一峰](http://www.ruanyifeng.com/blog/2014/06/git_remote.html)
-- [Git 分支 master vs. origin/master vs. remotes/origin/master](http://stackoverflow.com/questions/10588291/git-branching-master-vs-origin-master-vs-remotes-origin-master)
-- [Git Correct way to change Active Branch in a bare repository?](http://stackoverflow.com/questions/3301956/git-correct-way-to-change-active-branch-in-a-bare-repository)
-- [Git 回滚远程版本](http://blog.csdn.net/three_bird/article/details/51329178)
-- [七个你无法忽视的 Git 使用技巧| 编程派 | Coding Python](http://codingpy.com/article/seven-git-hacks-you-just-cannot-ignore/)
-- .
-- [Git Step by Step – (3) Git 对象模型](http://www.cnblogs.com/wilber2013/p/4192478.html)
-- [Git 内部原理之 Git 对象](http://www.importnew.com/29044.html)
+
+### 进阶文献
+
 - [用爱一起画 git](http://yanminx.com/blog/understand-git-by-drawing/)
-- .
+
+- [Git 内部原理之 Git 对象](http://www.importnew.com/29044.html)
+
+- [Git Step by Step – (3) Git 对象模型](http://www.cnblogs.com/wilber2013/p/4192478.html)
+
+- [Git 分支 master vs. origin/master vs. remotes/origin/master](http://stackoverflow.com/questions/10588291/git-branching-master-vs-origin-master-vs-remotes-origin-master)
+
+### 常用命令、使用技巧
+
 - [Git 添加空文件夹的方法](http://www.cnblogs.com/jinzhao/archive/2012/03/21/2410156.html)
+
 - [git add --all 为啥不能添加空文件夹，这样设计的初衷是？](http://www.zhihu.com/question/29811994)
-- .
+
+- [常用 Git 命令清单 —— 阮一峰](http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
+
+- [Git 使用流程规范. —— 阮一峰](http://www.ruanyifeng.com/blog/2015/08/git-use-process.html)
+
+- [Git 远程操作详解. —— 阮一峰](http://www.ruanyifeng.com/blog/2014/06/git_remote.html)
+
 - [Git 学习 5：Git 常用命令简明用法](http://blog.csdn.net/u011116672/article/details/51261791)
-- [Git bash 中运行 `git log` 之后怎样终止这个命令？](http://bbs.csdn.net/topics/390527003)
-- [个性化你的 `git log` 的输出格式，更容易肉眼查看](http://www.tuicool.com/articles/Ab6Nru)
+
+- [Git Correct way to change Active Branch in a bare repository?](http://stackoverflow.com/questions/3301956/git-correct-way-to-change-active-branch-in-a-bare-repository)
+
+- [Git 回滚远程版本](http://blog.csdn.net/three_bird/article/details/51329178)
+
+- [七个你无法忽视的 Git 使用技巧| 编程派 | Coding Python](http://codingpy.com/article/seven-git-hacks-you-just-cannot-ignore/)
+
+- [Git bash 中运行 git log 之后怎样终止这个命令？](http://bbs.csdn.net/topics/390527003)
+
+- [个性化你的 git log 的输出格式，更容易肉眼查看](http://www.tuicool.com/articles/Ab6Nru)
+
 - [使用 SourceTree 查看 Git 版本线图（Graph）的注意事项](http://blog.miniasp.com/post/2014/01/07/SourceTree-Git-Graph-problem-solved.aspx)
+
 - [Use gitk to understand git](https://lostechies.com/joshuaflanagan/2010/09/03/use-gitk-to-understand-git/)
-- .
+
+### GitHub
+
 - [GitHub 入门与实践 - 大塚弘记（日）]()
+
 - [GitHub 漫游指南](https://github.com/phodal/github-roam)
+
 - [GitHub 秘籍](https://snowdream86.gitbooks.io/github-cheat-sheet/content/zh/index.html)
+
 - [专为设计师而写的 GitHub 快速入门教程](http://blog.jobbole.com/73944/)
+
 - [GitHub - 知乎 精华](http://www.zhihu.com/topic/19566035/top-answers)
-
-
 
 
 
