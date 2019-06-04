@@ -826,6 +826,29 @@ It is entirely possible that you can be working with a “remote” repository t
 
     $ git fetch pb
 
+> !!! Git 不用 clone 整个远程仓库，只把特定的 commit 给 fetch 下来的方案
+
+    实际工作或者学习中遇到的情形可能是，我需要阅读一个大点的开源项目，远程仓库的代码量太庞大了，如果我使用 git reset --hard [commit sha1] 得到感兴趣的 commit 快照，就首先得 git clone 整个远程仓库，时间需要等待太长，而且网络一旦有问题还会功亏一篑。
+    所以，有没有一种只拉取远程仓库中的某个 commit 呢？ 有！命令行如下:
+
+	# make a new blank repository in the current directory
+	git init
+	
+	# add a remote
+	git remote add [nick_name] [url://to/source/repository]
+	
+	# fetch a commit (or branch or tag) of interest
+	# Note: the full history of this commit will be retrieved
+	git fetch [nick_name] <sha1-of-commit-of-interest>
+	
+	# reset this repository's master branch to the commit of interest
+	git reset --hard FETCH_HEAD
+	
+	references:
+	https://stackoverflow.com/questions/14872486/retrieve-specific-commit-from-a-remote-git-repository
+	https://stackoverflow.com/questions/14370157/git-fetch-a-specific-commit-by-hash
+	https://stackoverflow.com/questions/3489173/how-to-clone-git-repository-with-specific-revision-changeset#
+
 #### 远程仓库的重命名与移除
 
 如果想要重命名引用的名字可以运行 `git remote rename` 去修改一个远程仓库的简写名。 例如，想要将 pb 重命名为 paul，可以用 git remote rename 这样做：
@@ -1330,9 +1353,11 @@ git fetch 不会更改本地分支，因此更不会更改本地工作目录，�
 
 ### 常用命令、使用技巧
 
+- [Git 不用 clone 整个远程仓库，只把特定的 commit 给 fetch 下来的方案](https://www.cnblogs.com/foohack/p/7199127.html)
+
 - [Git 添加空文件夹的方法](http://www.cnblogs.com/jinzhao/archive/2012/03/21/2410156.html)
 
-- [git add --all 为啥不能添加空文件夹，这样设计的初衷是？](http://www.zhihu.com/question/29811994)
+- [`git add --all` 为啥不能添加空文件夹，这样设计的初衷是？](http://www.zhihu.com/question/29811994)
 
 - [常用 Git 命令清单 —— 阮一峰](http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
 
