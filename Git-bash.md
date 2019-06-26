@@ -792,6 +792,18 @@ It is entirely possible that you can be working with a “remote” repository t
     $ echo path/to/subdir/*> .git/info/sparse-checkout
     $ git checkout branchname
 
+#### 克隆本地仓库
+
+有时候想要备份一个本地已有 Git 仓库的代码到一个新的磁盘位置，原来我只会用 TortoiseGit 的 export 功能，这个功能只会把当前分支的当前状态打一个 ZIP 包，但是我们可能需要的是整个完整仓库的备份？
+
+如果重新从远程仓库 clone，网络可能又太慢。
+
+实际上从远程仓库 clone 的代码，本地已经是一个新的代码仓库，因此我们应该可以从本地代码仓库直接 clone.
+
+其实很简单，只要把本地的文件仓库的文件夹转换成 url 就可以从本地 clone了。比如 soui 仓库我本地放在了：d:\work\soui.git 这个文件夹，那它的 git 的 url 就是 file:///D:/work/soui2.git/.git（如果不会转换文件 url 地址，就把这个文件拖到浏览器里打开，从地址栏复制）。直接从这个地址 clone 就好了，这个文件 url 地址就称为新仓库的远程仓库，在新仓库修改代码后提交，就会更新到该文件 url 地址对应的原仓库里去。
+
+如果要设置新仓库和原仓库相同的远程地址，在 TortoiseGit 里打开设置，将 Remote 里的 origin 值为该文件 url 修改为真正的远程仓库就可以了。
+
 #### 查看远程仓库
 
 `git remote` 命令列出所有远程仓库：
@@ -1354,6 +1366,8 @@ git fetch 不会更改本地分支，因此更不会更改本地工作目录，�
 ### 常用命令、使用技巧
 
 - [Git 不用 clone 整个远程仓库，只把特定的 commit 给 fetch 下来的方案](https://www.cnblogs.com/foohack/p/7199127.html)
+
+- [Git 本地仓库备分的小技巧](https://ui520.cn/bbs/topic/113-1.html)
 
 - [Git 添加空文件夹的方法](http://www.cnblogs.com/jinzhao/archive/2012/03/21/2410156.html)
 
