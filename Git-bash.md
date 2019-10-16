@@ -1043,7 +1043,11 @@ Figure 34. Remote-tracking branch for teamone/master
 
 ####  本地分支与远程分支关联
 
-    `git branch --set-upstream <分支名> <origin>/<分支名>` 本地分支关联到远程分支
+    # 过时方式
+    `git branch --set-upstream <本地分支名> <origin>/<分支名>` 本地分支关联到远程分支
+    
+    # 新的方式
+    `git branch --set-upstream-to=<origin>/<分支名> <本地分支名>` 本地分支关联到远程分支
 
 `git clone` 默认会把远程仓库的所有分支克隆到本地库中（建立所有远程分支对应的远程跟踪分支），但只会创建本地 `master` 分支与 `remotes/origin/master`（或称 `origin/master`）分支关联；
 
