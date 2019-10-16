@@ -956,15 +956,17 @@ Figure 34. Remote-tracking branch for teamone/master
 
 现在你的本地分支 sf 会自动将推送和抓取数据的位置定位到 origin/serverfix 了。
 
-> 一些小结：
+    一些小结：
 
-	- master 或 <branchname>： 本地版本库（local repo）中的本地分支；
-	- remotes/origin/master 或 remotes/origin/<branchname>：
-	等价与 origin/master 或 origin/<branchname>，也就是远程跟踪分支（remote tracking branch），他们是本地版本库（local repo）中对远程分支的引用（Refs), 表示了最近一次仓库网路同步时远程仓库中的某个分支状态；  
-	1). 本地分支可以使用 git checkout <branchname> 切换；  
+	- master 或 <branchname>：本地版本库（local repo）中的本地分支；
+  	- remotes/origin/master 或 remotes/origin/<branchname>：
+  	  等价于 origin/master 或 origin/<branchname>，也就是远程跟踪分支（remote tracking branch），
+      他们是本地版本库（local repo）中对远程分支的引用（Refs), 
+      表示了最近一次仓库网路同步时远程仓库中的某个分支状态；  
+	
+    不难发现：    
+    1). 本地分支可以使用 git checkout <branchname> 切换；  
 	2). 远程跟踪分支，即便使用 git checkout remotes/origin/<branchname`，切换到远程跟踪分支，但是，远程跟踪分支是只读的（仅在网路仓库同步时远程跟踪分支会自动更新），无法在远程跟踪分支上进行 git add 以及 git commit 等操作; Git 会给出提示 “You are in 'detached HEAD' state.”（实际上，此时，当前本地 HEAD 指向的是 remote branch 对应的 SHA1，可以查看该本地版本库目录中 .git/HEAD 文件内容证实这一点）;  
-    3). 远程关联分支，并且 Git 给出建议 “git checkout -b new_branch_name”，即创建一个新的本地分支与远程分支关联以便跟踪（git pull,git push）；
-
      # 示例：
      <user>@<name-pc> /d/Develop/Git/repo2/test (master)
      $ git checkout remotes/origin/master
@@ -982,7 +984,9 @@ Figure 34. Remote-tracking branch for teamone/master
      HEAD is now at 759f8a2... Initial commit
    
      <user>@<name-pc> /d/Develop/Git/repo2/test ((759f8a2...))
-	3).  默认 git clone <版本库的网址> 会自动将本地分支 `master` 与 远程分支 `remotes/origin/master` 关联起来；
+
+    3). 远程关联分支，并且 Git 给出建议 “git checkout -b new_branch_name”，即创建一个新的本地分支与远程分支关联以便跟踪（git pull,git push）；
+	4). 默认 git clone <版本库的网址> 会自动将本地分支 `master` 与 远程分支 `remotes/origin/master` 关联起来；
 
 > 案例：测试切换到远程跟踪分支
 
