@@ -245,7 +245,8 @@ Git 自带一个 git config 的工具来帮助设置控制 Git 外观和行为�
 - `git branch <branchname>`    创建一个新分支
 - `git branch -d <branchname>` 删除一个分支
 - `git branch -m <oldbranch> <newbranch>` 本地分支改名
-- `git branch --set-upstream <分支名> <origin>/<分支名>` 本地分支关联到远程分支
+- `git branch --set-upstream <分支名> <origin>/<分支名>` 本地分支关联到远程分支（过时）
+- `git branch --set-upstream-to=<origin>/<分支名> <本地分支名>` 本地分支关联到远程分支（更新）
 
 `git branch` 命令仅仅 '创建' 一个新分支，并不会自动切换到新分支中去（即不会修改 HEAD 指针）; 使用 `git checkout -b` 可以创建新分支，并且切换到所创建的分支：
 
@@ -1048,6 +1049,15 @@ Figure 34. Remote-tracking branch for teamone/master
     
     # 新的方式
     `git branch --set-upstream-to=<origin>/<分支名> <本地分支名>` 本地分支关联到远程分支
+
+	# 或者使用 `git push -u <远程仓库> <本地分支名>:<远程分支名>`
+	# 例如：
+	`git push -u origin master` # 推送且将本地 master 分支关联到远程仓库 origin 的分支（由于省略了远程分支名称，默认是与本地分支同名的分支）
+	# 假设在此基础上，创建并切换到新分支 dev，再在 dev 分支增加新的提交，此时如果执行
+	`git push -u origin master` # 将会报错，因为这里的 master 是本地分支
+	# 解决方式1：可以把当前本地 dev 分支 merge 到本地 master 分支并切换到本地 master 分支，然后 git push 推送远程 master 分支中；
+	# 解决方式2：直接把当前本地 dev 分支推送到远程仓库的 dev 分支（在远程仓库也创建 dev 分支）
+	`git push -u origin dev` # 远程仓库 origin 将会多出 dev 分支；
 
 `git clone` 默认会把远程仓库的所有分支克隆到本地库中（建立所有远程分支对应的远程跟踪分支），但只会创建本地 `master` 分支与 `remotes/origin/master`（或称 `origin/master`）分支关联；
 
