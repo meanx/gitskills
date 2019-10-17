@@ -803,7 +803,19 @@ It is entirely possible that you can be working with a “remote” repository t
 
 其实很简单，只要把本地的文件仓库的文件夹转换成 url 就可以从本地 clone了。比如 soui 仓库我本地放在了：d:\work\soui.git 这个文件夹，那它的 git 的 url 就是 file:///D:/work/soui2.git/.git（如果不会转换文件 url 地址，就把这个文件拖到浏览器里打开，从地址栏复制）。直接从这个地址 clone 就好了，这个文件 url 地址就称为新仓库的远程仓库，在新仓库修改代码后提交，就会更新到该文件 url 地址对应的原仓库里去。
 
-如果要设置新仓库和原仓库相同的远程地址，在 TortoiseGit 里打开设置，将 Remote 里的 origin 值为该文件 url 修改为真正的远程仓库就可以了。
+注意：由于这样的操作中被克隆的原本地仓库其实是由远程仓库克隆的 `non bare repository`，然而 Git 默认不允许向一个 `non bare repository` 进行 `git push` 推送；因此，虽然使用了 `git clone origin file:///<local>/<path>/.git` 克隆了新的本地仓库，但该新的本地仓库的后续提交，并不能推送到原本地仓库。
+
+解决方式 1：
+强制将原本地仓库设置为 `bare repository` 参考[这里](https://stackoverflow.com/questions/11117823/git-push-error-refusing-to-update-checked-out-branch)，在原本地仓库目录下执行命令
+
+	$ git config --bool core.bare true`
+
+当然，也可以通过设置 `git config receive.denyCurrentBranch updateInstead` 实现，更多的资料，可参考[这里](https://stackoverflow.com/questions/804545/what-is-this-git-warning-message-when-pushing-changes-to-a-remote-repository/28262104#28262104)
+
+如此，原本地仓库将会变成 `bare` 仓库，该仓库中的原有的 `working tree` （工作副本）将会无效；但是，之前通过 `git clone` 的新本地仓库可以向该本地仓库进行 `git push`推送了。
+
+解决方式 2：
+设置新本地仓库和原本地仓库相同的远程地址，在 TortoiseGit 里打开设置，将 Remote 里的 origin 值为该文件 url 修改为真正的远程仓库就可以了。
 
 #### 查看远程仓库
 
