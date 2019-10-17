@@ -892,6 +892,90 @@ It is entirely possible that you can be working with a “remote” repository t
     $ git remote
     origin
 
+#### 创建位于本地磁盘的远程仓库
+
+> Remote repositories can be on your local machine.
+
+方式 1：
+
+    # 在本地磁盘初始化一个 `bare` 仓库
+    $ mkdir -p /e/0000/    # -p 参数表示创建多级目录
+    $ cd /e/0000/
+    $ git init --bare
+    # 在本地磁盘其它位置使用 `git clone file:///<path>` 克隆上面的本地仓库
+    $ cd /e/
+    $ git clone file:///e/0000 1111
+    # 于是 /e/0000/ 便是 /e/1111/ 的远程仓库
+
+方式 1 的一种变化：
+
+    # 由于 `git init --bare` 所创建的仓库，并不会生成 `.git` 目录，
+    # 因此，可以手动先创建一个 `.git` 目录，再在该 `.git` 目录中执行 `git init --bare` 命令：
+    $ mkdir -p /e/0000/.git/    # -p 参数表示创建多级目录
+    $ cd /e/0000/.git/
+    $ git init --bare
+    # 在本地磁盘其它位置使用 `git clone file:///<path>/.git` 克隆上面的本地仓库
+    $ cd /e/
+    $ git clone file:///e/0000/.git 1111
+    # 于是 /e/0000/.git/ 便是 /e/1111/ 的远程仓库
+    # 可直接使用 `git push` 或者 `git pull` 等远程命令进行推送或拉取；
+
+方式 2：
+
+    # 有时可能我们已经有了一个本地仓库，并且仓库中已经有了多次的提交或者含有了多个分支，
+    # 这种情况下，希望将该本地仓库推送到本地电脑磁盘或者 U 盘的某个远程仓库，需要采用如下方式：
+    # 首先，和方式 1 一样，需要在本地磁盘或者 U 盘，初始化一个 `bare` 仓库
+    $ mkdir -p /f/0000/.git/    # -p 参数表示创建多级目录
+    $ cd /f/0000/.git/
+    $ git init --bare
+    # 其次，将新创建的 `bare` 仓库添加为`已存在的本地仓库`的远程仓库：
+    $ cd /e/1111/
+    $ git remote add origin file:///f/0000/.git/
+    # 此时，还不能对远程仓库进行推送或拉取，
+    # 然后，将已存在的本地仓库的分支推送并关联到远程仓库的远程分支：
+    $ git push -u origin master # 将本地 master 分支推送并关联到远程仓库的同名分支;
+    # 注意，如果本地分支有多个，并且也希望将其它分支推送到远程仓库，同推送并关联 master 分支一样：
+    $ git push -u origin dev    # 将本地 dev    分支推送并关联到远程仓库的同名分支;
+    # 到这里，就可以使用 `git push` 或者 `git pull` 等远程命令进行推送或拉取；
+
+方式 2 的一种变化：
+
+    # 在方式 2 中，使用了 `git push -u` 命令，同时完成了将本地分支 “推送” 且 “关联” 到远程仓库的同名分支的操作。
+    # 其实，也可以先进行本地分支与远程仓库的远程分支的“关联”，再“推送”：
+    # 
+    # 首先，一样，需要在本地磁盘或者 U 盘，初始化一个 `bare` 仓库
+    $ mkdir -p /f/0000/.git/    # -p 参数表示创建多级目录
+    $ cd /f/0000/.git/
+    $ git init --bare
+    # 其次，将新创建的 `bare` 仓库添加为`已存在的本地仓库`的远程仓库：
+    $ cd /e/1111/
+    $ git remote add origin file:///f/0000/.git/
+    # 然后，先“关联”
+    # 将本地 master 分支关联到远程仓库的远程分支 origin/master;
+    $ git branch --set-upstream-to=origin/master master 
+    # 同理，如果要关联 dev 分支：
+    # 将本地 dev    分支关联到远程仓库的远程分支 origin/dev;
+    $ git branch --set-upstream-to=origin/dev dev 
+    # 然后，到这里，就可以使用 `git push` 或者 `git pull` 等远程命令进行推送或拉取；
+    $ git push
+
+方式 3：
+
+    # 从当前本地仓库克隆处新的仓库，设置新的仓库作为本地仓库的远程仓库
+    # 假设存在已有本地仓库 /e/00/.git，想要创建一个 /f/11/.git 仓库作为该仓库的远程仓库：
+    # 具体步骤如下：
+    $ cd /f/
+    $ git clone file:///e/00/.git 11
+    $ cd /f/11/
+    # 删除由于克隆操作默认创建的远程仓库
+    $ git remote rm origin
+    # 设置新克隆的 `non bare` 仓库可以想远程仓库一样可接受推送
+    $ git config receive.denyCurrentBranch updateInstead
+    # cd /e/00/
+    # git push -u origin master
+    # 到这里，就可以使用 `git push` 或者 `git pull` 等远程命令进行推送或拉取；
+
+
 #### 远程分支（Remote Branches）
 
 ![TortoiseGit-branch-color](./image/TortoiseGit-branch-color.png)
