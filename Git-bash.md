@@ -928,8 +928,9 @@ It is entirely possible that you can be working with a “remote” repository t
     $ mkdir -p /f/0000/.git/    # -p 参数表示创建多级目录
     $ cd /f/0000/.git/
     $ git init --bare
-    # 其次，将新创建的 `bare` 仓库添加为`已存在的本地仓库`的远程仓库：
+    # 切换到原有本地仓库目录
     $ cd /e/1111/
+    # 将新创建的 `bare` 仓库添加为`已存在的本地仓库`的远程仓库：
     $ git remote add origin file:///f/0000/.git/
     # 此时，还不能对远程仓库进行推送或拉取，
     # 然后，将已存在的本地仓库的分支推送并关联到远程仓库的远程分支：
@@ -947,8 +948,9 @@ It is entirely possible that you can be working with a “remote” repository t
     $ mkdir -p /f/0000/.git/    # -p 参数表示创建多级目录
     $ cd /f/0000/.git/
     $ git init --bare
-    # 其次，将新创建的 `bare` 仓库添加为`已存在的本地仓库`的远程仓库：
+    # 切换到原有本地仓库目录
     $ cd /e/1111/
+    # 将新创建的 `bare` 仓库添加为`已存在的本地仓库`的远程仓库：
     $ git remote add origin file:///f/0000/.git/
     # 然后，先“关联”
     # 将本地 master 分支关联到远程仓库的远程分支 origin/master;
@@ -969,12 +971,32 @@ It is entirely possible that you can be working with a “remote” repository t
     $ cd /f/11/
     # 删除由于克隆操作默认创建的远程仓库
     $ git remote rm origin
-    # 设置新克隆的 `non bare` 仓库可以想远程仓库一样可接受推送
+    # 设置新克隆的 `non bare` 仓库可以像远程仓库一样可接受推送拉取
     $ git config receive.denyCurrentBranch updateInstead
-    # cd /e/00/
-    # git push -u origin master
+    # 切换原有的本地仓库目录
+    $ cd /e/00/
+    # 将新新克隆的 `non bare` 仓库添加为`已存在的本地仓库`的远程仓库：
+    $ git remote add orgin file:///f/11/.git
+    $ git push -u origin master
     # 到这里，就可以使用 `git push` 或者 `git pull` 等远程命令进行推送或拉取；
 
+方式 3 的一种变化：
+
+    # 不再从当前本地仓库克隆处新的仓库，直接创建新的 `non bare` 仓库作为本地仓库的远程仓库
+    # 假设存在已有本地仓库 /e/00/.git，想要创建一个 /f/11/.git 仓库作为该仓库的远程仓库：
+    # 具体步骤如下：
+    $ mkdir -p /f/11/    # -p 参数表示创建多级目录
+    $ cd /f/11/
+    # 创建 `non bare` 仓库，用来作为远程仓库
+    $ git init
+    # 设置新创建的 `non bare` 仓库可以像远程仓库一样可接受推送拉取
+    $ git config receive.denyCurrentBranch updateInstead
+    # 切换原有的本地仓库目录
+    $ cd /e/00/
+    # 将新新创建的 `non bare` 仓库添加为`已存在的本地仓库`的远程仓库：
+    $ git remote add orgin file:///f/11/.git
+    $ git push -u origin master
+    # 到这里，就可以使用 `git push` 或者 `git pull` 等远程命令进行推送或拉取；
 
 #### 远程分支（Remote Branches）
 
