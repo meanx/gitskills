@@ -132,6 +132,11 @@ Git 自带一个 git config 的工具来帮助设置控制 Git 外观和行为�
 
 ## Git 基础
 
+### 建立 git 仓库
+
+- git init # 在当前目录建立仓库
+- git init <repo-name> # 在当前目录的子目录 <repo-name> 中建立仓库
+
 ### 提交与撤消（Undoing Things）
 
 #### git add
