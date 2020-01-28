@@ -390,7 +390,7 @@ Figure 36. 通过合并操作来整合分叉了的历史
 
 然后，使用变基命令运行：
 
-    # 先将工作分支切换到要想要变更 HEAD 的分支上，即 experiment 分支
+    # 先将工作分支切换到要想要变更的分支上，即将 HEAD 指向 experiment 分支
     $ git checkout experiment
     $ git rebase master
     First, rewinding head to replay your work on top of it...
@@ -398,7 +398,7 @@ Figure 36. 通过合并操作来整合分叉了的历史
 
 This operation works by going to the common ancestor of the two branches (the one you’re on and the one you’re `rebasing onto`), getting the diff introduced by each commit of the branch you’re on, saving those diffs to temporary files, resetting the current branch to the same commit as the branch you are `rebasing onto`, and finally applying each change in turn.
 
-该操作的原理是首先找到这两个分支（即当前分支 experiment、变基操作的目标基底分支 master）的最近共同祖先 C2，然后对比当前分支相对于该祖先的历次提交，提取相应的修改并存为临时文件，然后将当前分支指向目标基底 C3, 最后以此将之前另存为临时文件的修改依序应用。
+该操作的原理是首先找到这两个分支（即当前分支 experiment、变基操作的基底分支 master）的最近共同祖先 C2，然后对比当前分支相对于该祖先的历次提交，提取相应的修改并存为临时文件，然后将当前分支指向目标基底 C3, 最后以此将之前另存为临时文件的修改依序应用。
 
 ![](./image/basic-rebase-3.png)
 Figure 37. 将 `C4` 中的修改变基到 `C3` 上
@@ -420,7 +420,7 @@ Figure 38. master 分支的快进合并
 #### 更有趣的变基例子
 
 You can also have your rebase replay on something other than *the rebase target branch*.   
-在对两个分支进行变基时，所生成的“重放”（replay）并不一定要在目标分支上应用，你也可以指定另外的一个分支进行应用。 就像 *从一个特性分支里再分出一个特性分支的提交历史* 中的例子那样。 你创建了一个特性分支 server，为服务端添加了一些功能，提交了 C3 和 C4。 然后从 C3 上创建了特性分支 client，为客户端添加了一些功能，提交了 C8 和 C9。 最后，你回到 server 分支，又提交了 C10。
+在对两个分支进行变基时，所生成的“重放”（replay）并不一定要在目标分支（当前工作分支）上应用，你也可以指定另外的一个分支进行应用。 比如之前 *从一个特性分支里再分出一个特性分支的提交历史* 的例子，你创建了一个特性分支 server，为服务端添加了一些功能，提交了 C3 和 C4。 然后从 C3 上创建了特性分支 client，为客户端添加了一些功能，提交了 C8 和 C9。 最后，你回到 server 分支，又提交了 C10。
 ![](./image/interesting-rebase-1.png)
 Figure 39. 从一个特性分支里再分出一个特性分支的提交历史
 
