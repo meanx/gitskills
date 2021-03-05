@@ -999,7 +999,7 @@ It is entirely possible that you can be working with a “remote” repository t
 
 方式 3 的一种变化：
 
-    # 不再从当前本地仓库克隆处新的仓库，直接创建新的 `non bare` 仓库作为本地仓库的远程仓库
+    # 不再从当前本地仓库克隆出新的仓库，直接创建新的 `non bare` 仓库作为本地仓库的远程仓库
     # 假设存在已有本地仓库 /e/00/.git，想要创建一个 /f/11/.git 仓库作为该仓库的远程仓库：
     # 具体步骤如下：
     $ mkdir -p /f/11/    # -p 参数表示创建多级目录
@@ -1014,6 +1014,25 @@ It is entirely possible that you can be working with a “remote” repository t
     $ git remote add orgin file:///f/11/.git
     $ git push -u origin master
     # 到这里，就可以使用 `git push` 或者 `git pull` 等远程命令进行推送或拉取；
+
+方式 4：
+
+    # 将已经存在本地仓库，配置为可被 push/pull 的远程仓库
+    # 假设存在已有本地仓库 /e/00/.git，并且已经存在了 commit 提交；
+    # 接下来打算不再继续在该本地仓库提交变更，而且将其视为远程仓库；
+    # 其它从该仓库 clone 的仓库可对其进行 pull/push：
+    # 具体步骤如下：
+    $ cd /e/00/
+    $ 设置忽略（ignore）仓库 work-tree 中的 HEAD 和 ref，因为这些引用原本指向了已有的提交; 
+    $ 这样设置之后其可作为远程仓库，当被 push 时与 work-tree 中的 HEAD 和 ref 等不会冲突;
+    $ git config receive.denyCurrentBranch ignore
+    $ cd /f/
+    $ git clone file:///e/00/.git 11
+    # 由于是从 /e/00/.git 克隆而来，所以并不需要多余的设置；
+    # 到这里，就可以使用 `git push` 或者 `git pull` 等远程命令进行推送或拉取；
+
+方式 4 存在一点瑕疵，因为原本的仓库存在了 commit，当将其设置成远程仓库并收到 push 之后，虽然查看 git log 可以看到收到了新的 push，但在仓库的 work-tree 并不会直接看到更新的文件，并且如果安装了 TortoiseGit，该仓库的文件夹图片会显示成红色图标。
+![git config receive.denyCurrentBranch ignore](./image/git-config-receive-denyCurrentBranch-ignore.png)
 
 #### 远程分支（Remote Branches）
 
