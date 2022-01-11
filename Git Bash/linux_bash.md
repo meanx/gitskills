@@ -98,6 +98,40 @@ ls -l .git/objects/
 
 find .git/objects/ -type f
 
+示例：
+Vsense@DESKTOP-I4HJMO6 MINGW64 /d/2222/mylove (master)
+$ find .git/
+.git/
+.git/config
+.git/description
+.git/HEAD
+.git/hooks
+.git/hooks/applypatch-msg.sample
+.git/hooks/commit-msg.sample
+.git/hooks/fsmonitor-watchman.sample
+.git/hooks/post-update.sample
+.git/hooks/pre-applypatch.sample
+.git/hooks/pre-commit.sample
+.git/hooks/pre-push.sample
+.git/hooks/pre-rebase.sample
+.git/hooks/pre-receive.sample
+.git/hooks/prepare-commit-msg.sample
+.git/hooks/update.sample
+.git/info
+.git/info/exclude
+.git/objects
+.git/objects/info
+.git/objects/pack
+.git/refs
+.git/refs/heads
+.git/refs/tags
+
+Vsense@DESKTOP-I4HJMO6 MINGW64 /d/2222/mylove (master)
+$ find .git/objects/
+.git/objects/
+.git/objects/info
+.git/objects/pack
+
 [Linux 文件查找工具之 find “大宝剑”](http://blog.jobbole.com/100925/)
 
 ### 命令的执行结果太长时
