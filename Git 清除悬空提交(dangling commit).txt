@@ -1,0 +1,8 @@
+Git 清除悬空提交(dangling commit)
+https://www.codenong.com/18514659
+
+如何从git存储库中删除所有悬空的提交
+http://www.tekkie.ro/news/howto-remove-all-dangling-commits-from-your-git-repository/
+
+git reflog expire --expire=now --all
+git gc --prune=now
