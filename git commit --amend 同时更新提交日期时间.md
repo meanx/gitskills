@@ -31,4 +31,9 @@ $ git commit --amend --date=`date -R` # 测试报错
 $ git commit --amend --date="Fri, 20 Oct 2023 17:37:05 +0800"
 ```
 
+其实，以上语句中指定的`日期时间字符串值`中可以省略 `星期,  `，例如：
+
+``` shell
+$ git commit --amend --date="20 Oct 2023 17:37:05 +0800"
+```
 
