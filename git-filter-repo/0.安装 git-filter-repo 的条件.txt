@@ -1,0 +1,8 @@
+
+https://github.com/newren/git-filter-repo
+
+Prerequisites
+filter-repo requires:
+
+git >= 2.22.0 at a minimum; some features require git >= 2.24.0 or later
+python3 >= 3.6
